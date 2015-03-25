@@ -13,6 +13,7 @@ if ( !extension_loaded('intl') ) {
     exit;
 }
 
+/*
 $GLOBALS['locale'] = array("ms_MY.utf8","ms_MY.iso88591","ms_MY");
 $GLOBALS['alias'] = "ms_MY";
 
@@ -21,13 +22,21 @@ function setlang() {
     $lang = setlocale(LC_ALL, $GLOBALS['locale']);
     putenv("LANG=".$lang);
 }
+setlang();
+*/
 
 function nombor($num) {
     $num = preg_replace("/(\,)+/", '', $num);
 
+    /*
     $n = "dan";
     $c = "sen";
     $o = "sahaja";
+    */
+
+    $n = "and";
+    $c = "cents";
+    $o = "only";
 
     $r = new NumberFormatter($GLOBALS['alias'], NumberFormatter::SPELLOUT);
     if ( preg_match("/^(\d+)\.(\d+)$/", $num, $mm) ) {
@@ -41,9 +50,6 @@ function nombor($num) {
     $t = preg_replace("/\-/"," ", $t);
     return strtoupper($t);
 }
-
-// comment, to disable language translation
-setlang();
 ?>
 <html>
 <head>
